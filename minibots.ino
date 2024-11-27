@@ -1,63 +1,81 @@
 // https://docs.arduino.cc/tutorials/motor-shield-rev3/msr3-controlling-dc-motor/
 
-int directionPinA = 12;
-int pwmPinA = 3;
-int brakePinA = 9;
 
-int directionPinB = 13;
-int pwmPinB = 11;
-int brakePinB = 8;
+// Motor Pin Definitions
+int directionPinL = 12;
+int pwmPinL = 3;
+int brakePinL = 9;
+int directionPinR = 13;
+int pwmPinR = 11;
+int brakePinR = 8;
 
-//boolean to switch direction
-bool directionState;
 
 void setup() {
   
-//define pins as outputs
-pinMode(directionPinA, OUTPUT);
-pinMode(pwmPinA, OUTPUT);
-pinMode(brakePinA, OUTPUT);
+pinMode(directionPinL, OUTPUT);
+pinMode(pwmPinL, OUTPUT);
+pinMode(brakePinL, OUTPUT);
 
-pinMode(directionPinB, OUTPUT);
-pinMode(pwmPinB, OUTPUT);
-pinMode(brakePinB, OUTPUT);
+pinMode(directionPinR, OUTPUT);
+pinMode(pwmPinR, OUTPUT);
+pinMode(brakePinR, OUTPUT);
+
+}
+
+void drive() {
+  digitalWrite(directionPinL, HIGH);
+  digitalWrite(directionPinR, HIGH);
+
+  digitalWrite(brakePinL, LOW);
+  digitalWrite(brakePinR, LOW);
+
+  analogWrite(pwmPinL, 100);
+  analogWrite(pwmPinR, 100);
+}
+
+void brake() {
+  digitalWrite(brakePinL, HIGH);
+  digitalWrite(brakePinR, HIGH);
+
+  analogWrite(pwmPinL, 0);
+  analogWrite(pwmPinR, 0);
+}
+
+
+// Left is 1, Right is 2
+void turn(int direction) {
+
+  if (direction == 1):
+    digitalWrite(directionPinL, LOW);
+    digitalWrite(directionPinR, HIGH);
+  else:
+    digitalWrite(directionPinL, HIGH);
+    digitalWrite(directionPinR, LOW);
+
+  digitalWrite(brakePinL, LOW);
+  digitalWrite(brakePinR, LOW);
+
+  analogWrite(pwmPinL, 100);
+  analogWrite(pwmPinR, 100);
+
+  delay(500);
+
+  brake();
 
 }
 
 void loop() {
 
-//change direction every loop()
-directionState = !directionState;
+  drive();
 
-//write a low state to the direction pin (13)
-if(directionState == false){
-  digitalWrite(directionPinA, LOW);
-  digitalWrite(directionPinB, LOW);
-}
+  delay(2000);
 
-//write a high state to the direction pin (13)
-else{
-  digitalWrite(directionPinA, HIGH);
-  digitalWrite(directionPinB, HIGH);
-}
+  brake();
 
-//release breaks
-digitalWrite(brakePinA, LOW);
-digitalWrite(brakePinB, LOW);
+  delay(2000);
 
-//set work duty for the motor
-analogWrite(pwmPinA, 100);
-analogWrite(pwmPinB, 100);
+  turn(1);
 
-delay(2000);
+  delay(2000);
 
-//activate breaks
-digitalWrite(brakePinA, HIGH);
-digitalWrite(brakePinB, HIGH);
-
-//set work duty for the motor to 0 (off)
-analogWrite(pwmPinA, 0);
-analogWrite(pwmPinB, 0);
-
-delay(2000);
 }
