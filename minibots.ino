@@ -1,4 +1,5 @@
 #include "Motor.h"
+#include "Gate.h"
 
 void setup() {
   Motor motor;
