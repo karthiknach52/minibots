@@ -5,12 +5,12 @@
 class Motor {
   private:
     // Default motor pin definitions
-    int directionPinL = 12;
-    int pwmPinL = 3;
-    int brakePinL = 9;
-    int directionPinR = 13;
-    int pwmPinR = 11;
-    int brakePinR = 8;
+    int directionPinR = 12;
+    int pwmPinR = 3;
+    int brakePinR = 9;
+    int directionPinL = 13;
+    int pwmPinL = 11;
+    int brakePinL = 8;
 
   public:
     Motor();

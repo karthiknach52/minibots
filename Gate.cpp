@@ -2,11 +2,13 @@
 #include "Gate.h"
 
 Gate::Gate() {
-  servoL.attach(6);
-  servoR.attach(5);
+  servoL.attach(1);
+  servoR.attach(2);
 
   servoL.write(90);
   servoR.write(90);
+
+  delay(1000);
 }
 
 void Gate::open() {
@@ -19,4 +21,6 @@ void Gate::open() {
 
   servoL.write(90);
   servoR.write(90);
+
+  delay(1000);
 }

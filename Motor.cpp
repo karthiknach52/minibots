@@ -32,12 +32,12 @@ void Motor::drive() {
   
   brake(LOW);
 
-  analogWrite(pwmPinL, 100); // Speed ranges from 0-100 or 0-255??
-  analogWrite(pwmPinR, 100);
+  analogWrite(pwmPinL, 150); // Speed ranges from 0-100 or 0-255??
+  analogWrite(pwmPinR, 150);
 }
 
 void Motor::turn(int direction) {
-  int turnTime = 100; // Time in milliseconds to turn for
+  int turnTime = 750; // Time in milliseconds to turn for
 
   if (direction == RIGHT) {
       digitalWrite(directionPinL, HIGH);
@@ -49,8 +49,8 @@ void Motor::turn(int direction) {
 
   brake(LOW);
 
-  analogWrite(pwmPinL, 100);
-  analogWrite(pwmPinR, 100);
+  analogWrite(pwmPinL, 150);
+  analogWrite(pwmPinR, 150);
 
   delay(turnTime);
 
