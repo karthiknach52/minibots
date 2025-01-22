@@ -1,8 +1,12 @@
 // https://docs.arduino.cc/tutorials/motor-shield-rev3/msr3-controlling-dc-motor/
 
+#include "Motor.h"
 #include <Arduino.h>
 #include <stdint.h>
-#include "Motor.h"
+#include "Gate.h"
+
+Gate gate;
+
 const int MOTOR_POWER = 150;
 
 Motor::Motor() {
@@ -18,6 +22,9 @@ Motor::Motor() {
 
 // Setting arg HIGH turns it on and LOW turns it off
 void Motor::brake(uint8_t state) {
+
+  gate.open()
+
   if (state == HIGH) {
       analogWrite(pwmPinL, 0);
       analogWrite(pwmPinR, 0);

@@ -1,26 +1,22 @@
-#include <Arduino.h>
 #include "Gate.h"
+#include <Arduino.h>
+#include <Servo.h>
+
+Servo servo;
+
+const int GATE_HIGH = 90;
+const int GATE_LOW = 180;
 
 Gate::Gate() {
-  servoL.attach(1);
-  servoR.attach(2);
-
-  servoL.write(90);
-  servoR.write(90);
-
+  servo.attach(1);
+  servo.write(GATE_LOW);
   delay(1000);
 }
 
+void Gate::close() {
+  servo.write(GATE_LOW);
+}
+
 void Gate::open() {
-  const int openTime = 500;
-
-  servoL.write(180);
-  servoR.write(0);
-
-  delay(openTime);
-
-  servoL.write(90);
-  servoR.write(90);
-
-  delay(1000);
+  servo.write(GATE_OPEN);
 }
