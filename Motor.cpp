@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include "Motor.h"
+const int MOTOR_POWER = 150;
 
 Motor::Motor() {
   // Set pins as outputs
@@ -32,8 +33,8 @@ void Motor::drive() {
   
   brake(LOW);
 
-  analogWrite(pwmPinL, 150); // Speed ranges from 0-100 or 0-255??
-  analogWrite(pwmPinR, 150);
+  analogWrite(pwmPinL, MOTOR_POWER); // Speed ranges from 0-100 or 0-255??
+  analogWrite(pwmPinR, MOTOR_POWER);
 }
 
 void Motor::turn(int direction) {
@@ -49,8 +50,8 @@ void Motor::turn(int direction) {
 
   brake(LOW);
 
-  analogWrite(pwmPinL, 150);
-  analogWrite(pwmPinR, 150);
+  analogWrite(pwmPinL, MOTOR_POWER);
+  analogWrite(pwmPinR, MOTOR_POWER);
 
   delay(turnTime);
 
