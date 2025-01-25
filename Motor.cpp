@@ -3,6 +3,9 @@
 #include <Arduino.h>
 #include <stdint.h>
 #include "Motor.h"
+#include "Gate.h"
+
+Gate gate;
 
 Motor::Motor() {
   // Set pins as outputs
@@ -18,6 +21,8 @@ Motor::Motor() {
 // Setting arg HIGH turns it on and LOW turns it off
 void Motor::brake(uint8_t state) {
   if (state == HIGH) {
+      gate.close(); // Close the gate before braking
+
       analogWrite(pwmPinL, 0);
       analogWrite(pwmPinR, 0);
   }
@@ -27,13 +32,16 @@ void Motor::brake(uint8_t state) {
 }
 
 void Motor::drive() {
+
   digitalWrite(directionPinL, HIGH);
   digitalWrite(directionPinR, HIGH);
   
   brake(LOW);
 
-  analogWrite(pwmPinL, 150); // Speed ranges from 0-100 or 0-255??
-  analogWrite(pwmPinR, 150);
+  analogWrite(pwmPinL, motorPower);
+  analogWrite(pwmPinR, motorPower);
+
+  gate.open(); // Open the gate once driving
 }
 
 void Motor::turn(int direction) {
@@ -49,8 +57,8 @@ void Motor::turn(int direction) {
 
   brake(LOW);
 
-  analogWrite(pwmPinL, 150);
-  analogWrite(pwmPinR, 150);
+  analogWrite(pwmPinL, motorPower);
+  analogWrite(pwmPinR, motorPower);
 
   delay(turnTime);
 

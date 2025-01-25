@@ -2,25 +2,14 @@
 #include "Gate.h"
 
 Gate::Gate() {
-  servoL.attach(1);
-  servoR.attach(2);
-
-  servoL.write(90);
-  servoR.write(90);
-
-  delay(1000);
+  servo.attach(1);
+  open();
 }
 
 void Gate::open() {
-  const int openTime = 500;
+  servo.write(180);
+}
 
-  servoL.write(180);
-  servoR.write(0);
-
-  delay(openTime);
-
-  servoL.write(90);
-  servoR.write(90);
-
-  delay(1000);
+void Gate::close() {
+  servo.write(90);
 }

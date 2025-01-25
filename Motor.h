@@ -12,6 +12,8 @@ class Motor {
     int pwmPinL = 11;
     int brakePinL = 8;
 
+    const int motorPower = 150;
+
   public:
     Motor();
     void brake(uint8_t state);

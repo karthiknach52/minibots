@@ -2,9 +2,9 @@
 
 class Gate {
   private:
-    Servo servoL;
-    Servo servoR;
+    Servo servo;
   public:
     Gate();
     void open();
+    void close();
 };
