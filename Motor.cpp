@@ -3,9 +3,7 @@
 #include "Motor.h"
 #include <Arduino.h>
 #include <stdint.h>
-#include "Gate.h"
 
-Gate gate;
 
 const int MOTOR_POWER = 150;
 
@@ -23,7 +21,6 @@ Motor::Motor() {
 // Setting arg HIGH turns it on and LOW turns it off
 void Motor::brake(uint8_t state) {
 
-  gate.close();
 
   if (state == HIGH) {
       analogWrite(pwmPinL, 0);
