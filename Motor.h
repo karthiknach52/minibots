@@ -1,4 +1,5 @@
 // Direction definitions for turning
+#include <stdint.h>
 #define RIGHT 1
 #define LEFT 0
 

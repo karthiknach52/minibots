@@ -12,7 +12,7 @@ int detection_len{};
 void setup() {
 
   Serial.begin(9600);
-  //while (!Serial){};
+  while (!Serial){};
   Serial.println("START");
 
   Wire.begin();

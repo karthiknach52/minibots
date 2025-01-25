@@ -23,7 +23,7 @@ Motor::Motor() {
 // Setting arg HIGH turns it on and LOW turns it off
 void Motor::brake(uint8_t state) {
 
-  gate.open()
+  gate.close();
 
   if (state == HIGH) {
       analogWrite(pwmPinL, 0);

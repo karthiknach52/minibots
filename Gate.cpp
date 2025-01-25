@@ -18,5 +18,5 @@ void Gate::close() {
 }
 
 void Gate::open() {
-  servo.write(GATE_OPEN);
+  servo.write(GATE_HIGH);
 }
